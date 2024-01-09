@@ -45,8 +45,12 @@ const deleteBlog = async (req, res) => {
 const getSingleBlog = async (req, res) => {
     try {
         const { title } = req.params;
-
-        const blog = await blogModel.findOne({title: title});
+   const myUrl = (url)=>{
+        const data = url.split("-").join(" ");
+        return data
+        }
+const uri = myUrl(title)
+        const blog = await blogModel.findOne({title: uri});
         if (blog) {
             res.status(200).json(blog); // 200 OK
         } else {
